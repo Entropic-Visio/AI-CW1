@@ -48,7 +48,7 @@ class Environment:
         self.environment[x][y].change_state()
 
 
-class TSWMR:
+class Agent:
     """
     The Smart Waste Management Robot Class (Agent)
     
@@ -88,14 +88,14 @@ class TSWMR:
 
 if __name__ == "__main__":
     env = Environment(5)
-    tswmr = TSWMR(0, 0)
+    cleaner = Agent(0, 0)
     env.dirty_tile_selection(0, 1)
     env.print_environment()
 
-    print(tswmr.manhatten_distance((2, 2)))
+    print(cleaner.manhatten_distance((2, 2)))
 
-    tswmr.move_right(env.environment) # clean using cleaner
-    tswmr.clean(env.environment) # clean the environment.
-    tswmr.move_down(env.environment) # move down
-    tswmr.move_left(env.environment)
+    cleaner.move_right(env.environment) # clean using cleaner
+    cleaner.clean(env.environment) # clean the environment.
+    cleaner.move_down(env.environment) # move down
+    cleaner.move_left(env.environment)
     env.print_environment() # output the environment
