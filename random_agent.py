@@ -105,9 +105,25 @@ class Agent:
 if __name__ == "__main__":
     env = Environment(5)
     cleaner = Agent(0, 0)
-    env.dirty_tile_selection(0, 1)
+    env.dirty_tile_selection(0, 1)  
     env.dirty_tile_selection(2, 2)
     env.dirty_tile_selection(3, 3)
-    
+    env.print_environment()
+
+    choices = [cleaner.move_left, cleaner.move_right, cleaner.move_up, cleaner.move_down]
+
+    total_moves = 0
+
+    while env.check_clean() != True:
+        dirty_coord = env.check_clean()
+
+        random.choice(choices)(env.environment)
+        calc_distance = cleaner.manhatten_distance(dirty_coord)
+
+        if calc_distance == 0:
+            cleaner.clean(env.environment)
+
+        total_moves += 1
+
     env.print_environment() # output the environment
-    
+    print(f"Total Moves: {total_moves}") # Total Moves
